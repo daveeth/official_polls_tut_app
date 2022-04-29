@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		Polls App
+	</title>
+</head>
+<body>
+	<h1>Polls</h1>
+	<hr>
+	{% for q in questions %}
+		<ul>
+			<li><a href="{% url 'detail' q.id %}">{{q.question_text}}</a></li>
+		</ul>
+
+	{% endfor %}
+
+</body>
+</html>
