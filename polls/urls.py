@@ -4,7 +4,7 @@ from .views import (homepage,detail,
 
 
 urlpatterns = [
-	path('', homepage, name="home"),
+	path('', HomeView.as_view(), name="home"),
 	path('polls/', HomeView.as_view(), name="index"),
 	path('polls/<int:pk>/', DetailView.as_view(), name="detail"),
 	path('polls/<int:pk>/results/', ResultsView.as_view(), name="results"),

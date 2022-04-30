@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.utils.timezone import now
 from django.views import generic
 from .models import Question as Q, Choice
 
@@ -51,7 +52,7 @@ class HomeView(generic.ListView):
 
 	def get_queryset(self):
 		"""Return all Question objects"""
-		return Q.objects.order_by("-pub_date")
+		return Q.objects.filter(pub_date__lte=now()).order_by("-pub_date")
 
 class DetailView(generic.DetailView):
 	model = Q

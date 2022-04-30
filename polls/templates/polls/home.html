@@ -5,14 +5,18 @@
 {% endblock title %}
 
 {% block body %}
-	{% for q in questions %}
+	{% if questions %}
+		{% for q in questions %}
 
-		<ul>
-			<li><a href="{% url 'detail' q.id %}">{{q.question_text}}</a></li>
-		</ul>
+			<ul>
+				<li><a href="{% url 'detail' q.id %}">{{q.question_text}}</a></li>
+			</ul>
 
 
-	{% endfor %}
+		{% endfor %}
+	{% else %}
+		<p>No polls are available yet!!!</p>
+	{% endif %}
 {% endblock body %}
 
 </body>

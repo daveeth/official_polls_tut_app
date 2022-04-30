@@ -1,6 +1,6 @@
 from django.db import models
-import datetime
-from django.utils import timezone
+from datetime import timedelta as delta_t
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -12,7 +12,8 @@ class Question(models.Model):
 		return self.question_text
 
 	def was_recently_published(self):
-		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+		this_time = now()
+		return this_time-delta_t(days=1) <= self.pub_date <= this_time
 
 class Choice(models.Model):
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
