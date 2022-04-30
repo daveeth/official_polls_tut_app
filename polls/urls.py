@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import homepage,detail,results,vote
+from .views import (homepage,detail,
+	results,vote, HomeView, DetailView, ResultsView)
+
 
 urlpatterns = [
 	path('', homepage, name="home"),
-	path('polls/', homepage, name="home"),
-	path('polls/<int:question_id>', detail, name="detail"),
-	path('polls/<int:question_id>/results/', results, name="results"),
+	path('polls/', HomeView.as_view(), name="index"),
+	path('polls/<int:pk>/', DetailView.as_view(), name="detail"),
+	path('polls/<int:pk>/results/', ResultsView.as_view(), name="results"),
 	path('polls/<int:question_id>/vote/', vote, name="vote"),
 ]

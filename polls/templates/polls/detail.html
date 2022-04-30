@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Poll App - question-{{question.id}}</title>
-</head>
-<body>
+{% extends 'polls/base.html' %}
 
-	<h1>Question</h1>
-	<h2>{{question.question_text}}</h2>
-	<h3>The choices are</h3>
-	{% for ch in question.choice_set.all %}
+{% block title %}
+	{{question.question_text}}
+{% endblock title %}
 
-		<ul>
-			<li>{{ch.choice_text}}</li>
-		</ul>
+{% block body %}
+	
+	<form action="{% url 'vote' question.id%}" method="POST">
+		{% csrf_token %}
+		<fieldset>
+			<legend>
+				<h2>{{question.question_text}}</h2>
+				<h3>The choices are</h3>
+			</legend>
+			{% if error_msg %}
+				<p style="color:red"><strong>{{error_msg}}</strong></p>
+			{% endif %}
+			
+			{% for ch in question.choice_set.all %}
+				<input type="radio" name="choice" 
+						id="choice-{{forloop.counter}}" value="{{ch.id}}">
+				<label for="choice-{{forloop.counter}}" >{{ch.choice_text}}</label><br>
+			{% endfor %}
+		</fieldset>	
+		<input type="submit" name="btn_submit_vote" value="Vote">
+	</form>
+	
+{% endblock body %}
 
-	{% endfor %}
-
-</body>
-</html>
