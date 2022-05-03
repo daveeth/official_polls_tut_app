@@ -23,7 +23,9 @@
 				<label for="choice-{{forloop.counter}}" >{{ch.choice_text}}</label><br>
 			{% endfor %}
 		</fieldset>	
-		<input type="submit" name="btn_submit_vote" value="Vote">
+		<input class="btn_submit" 
+			style="margin: 33px; background-color: blue;color: white;border-radius: 5px;" 
+			type="submit" name="btn_submit_vote" value="Vote">
 	</form>
 	
 {% endblock body %}

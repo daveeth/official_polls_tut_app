@@ -2,3 +2,10 @@
 h1 {
 	color: indianred;
 }
+
+.btn_submit {
+	margin: 33px;
+	background-color: blue;
+	color: black;
+	border-radius: 5px;
+}
